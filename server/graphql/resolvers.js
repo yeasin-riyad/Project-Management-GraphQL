@@ -8,7 +8,10 @@ const resolvers = {
     clients: async () => await Client.find(),
     client: async (_, { id }) => await Client.findById(id),
 
-    projects: async () => await Project.find(),
+    projects: async () => {
+      const projects = await Project.find({});
+      return projects;
+    },
     project: async (_, { id }) => await Project.findById(id),
   },
 
