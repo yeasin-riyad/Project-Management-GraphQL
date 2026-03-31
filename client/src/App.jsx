@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
 import { ApolloClient, InMemoryCache, HttpLink } from '@apollo/client/core';
 import { ApolloProvider } from '@apollo/client/react';
+import Clients from './components/Clients';
 
 // Pages (import when ready)
 // import Home from './pages/Home';
@@ -22,6 +23,7 @@ function App() {
       <Router>
         <Header />
         <div className="container">
+          <Clients/>
           <Routes>
             {/* <Route path="/" element={<Home />} /> */}
             {/* <Route path="/projects/:id" element={<Project />} /> */}
