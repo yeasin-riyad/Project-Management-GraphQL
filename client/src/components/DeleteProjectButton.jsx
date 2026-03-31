@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { FaTrash } from 'react-icons/fa';
 import { DELETE_PROJECT } from '../mutations/projectMutations';
 import { GET_PROJECTS } from '../queries/projectQueries';
-import { useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client/react';
 
 export default function DeleteProjectButton({ projectId }) {
   const navigate = useNavigate();
