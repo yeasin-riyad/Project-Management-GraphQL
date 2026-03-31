@@ -9,7 +9,8 @@ export default function AddProjectModal() {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [clientId, setClientId] = useState('');
-  const [status, setStatus] = useState('new');
+  const [status, setStatus] = useState('NEW');
+  const [showModal, setShowModal] = useState(false);
 
   const [addProject] = useMutation(ADD_PROJECT, {
     variables: { name, description, clientId, status },
@@ -36,8 +37,9 @@ export default function AddProjectModal() {
 
     setName('');
     setDescription('');
-    setStatus('new');
+    setStatus('NEW');
     setClientId('');
+    setShowModal(false);
   };
 
   if (loading) return null;
@@ -48,6 +50,7 @@ export default function AddProjectModal() {
       {!loading && !error && (
         <>
           <button
+            onClick={() => setShowModal(true)}
             type='button'
             className='btn btn-primary'
             data-bs-toggle='modal'
@@ -59,12 +62,13 @@ export default function AddProjectModal() {
             </div>
           </button>
 
-          <div
-            className='modal fade'
-            id='addProjectModal'
-            aria-labelledby='addProjectModalLabel'
-            aria-hidden='true'
-          >
+          {showModal && (
+            <div
+              className='modal fade show d-block'
+              id='addProjectModal'
+              aria-labelledby='addProjectModalLabel'
+              aria-hidden='true'
+            >
             <div className='modal-dialog'>
               <div className='modal-content'>
                 <div className='modal-header'>
@@ -72,6 +76,7 @@ export default function AddProjectModal() {
                     New Project
                   </h5>
                   <button
+                  onClick={()=>setShowModal(false)}
                     type='button'
                     className='btn-close'
                     data-bs-dismiss='modal'
@@ -107,9 +112,9 @@ export default function AddProjectModal() {
                         value={status}
                         onChange={(e) => setStatus(e.target.value)}
                       >
-                        <option value='new'>Not Started</option>
-                        <option value='progress'>In Progress</option>
-                        <option value='completed'>Completed</option>
+                        <option value='NEW'>NEW</option>
+                        <option value='PROGRESS'>PROGRESS</option>
+                        <option value='COMPLETED'>COMPLETED</option>
                       </select>
                     </div>
 
@@ -142,6 +147,7 @@ export default function AddProjectModal() {
               </div>
             </div>
           </div>
+          )}
         </>
       )}
     </>

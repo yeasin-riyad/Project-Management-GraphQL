@@ -8,6 +8,7 @@ export default function AddClientModal() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
+  const [showModal, setShowModal] = useState(false);
 
   const [addClient] = useMutation(ADD_CLIENT, {
     variables: { name, email, phone },
@@ -33,12 +34,14 @@ export default function AddClientModal() {
     setName('');
     setEmail('');
     setPhone('');
+    setShowModal(false);
   };
 
   return (
     <>
       <button
         type='button'
+        onClick={() => setShowModal(true)}
         className='btn btn-secondary'
         data-bs-toggle='modal'
         data-bs-target='#addClientModal'
@@ -49,12 +52,13 @@ export default function AddClientModal() {
         </div>
       </button>
 
-      <div
-        className='modal fade'
-        id='addClientModal'
-        aria-labelledby='addClientModalLabel'
-        aria-hidden='true'
-      >
+      {showModal && (
+        <div
+          className='modal fade show d-block '
+          id='addClientModal'
+          aria-labelledby='addClientModalLabel'
+          aria-hidden='true'
+        >
         <div className='modal-dialog'>
           <div className='modal-content'>
             <div className='modal-header'>
@@ -63,6 +67,7 @@ export default function AddClientModal() {
               </h5>
               <button
                 type='button'
+                onClick={()=>setShowModal(false)}
                 className='btn-close'
                 data-bs-dismiss='modal'
                 aria-label='Close'
@@ -113,6 +118,7 @@ export default function AddClientModal() {
           </div>
         </div>
       </div>
+      )}
     </>
   );
 }
