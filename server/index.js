@@ -2,7 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const colors = require("colors");
-const bodyParser = require("body-parser");
+// const bodyParser = require("body-parser");
 const { ApolloServer } = require("@apollo/server");
 const { expressMiddleware } = require("@apollo/server/express4"); // works if correct version
 const connectDB = require("./config/db");
@@ -18,7 +18,7 @@ connectDB();
 
 // middleware
 app.use(cors());
-app.use(bodyParser.json());
+app.use(express.json());
 
 // async server start
 async function startServer() {
