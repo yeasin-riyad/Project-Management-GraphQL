@@ -10,7 +10,7 @@ A full-stack **Project Management System** built using **GraphQL, Express, Mongo
 👉 https://project-management-graph-ql.vercel.app
 
 ### ⚙️ Backend (GraphQL API):
-👉 https://project-management-graphql-2.onrender.com/graphql
+👉 https://project-management-graphql-2.onrender.com
 
 ---
 
