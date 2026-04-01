@@ -36,7 +36,7 @@ const typeDefs = gql`
   # MUTATIONS
   type Mutation {
     addClient(name: String!, email: String!, phone: String!): Client!
-    deleteClient(id: ID!): Boolean!
+    deleteClient(id: ID!): Client!
 
     addProject(
       name: String!
@@ -45,13 +45,14 @@ const typeDefs = gql`
       clientId: ID!
     ): Project!
 
-    deleteProject(id: ID!): Boolean!
+    deleteProject(id: ID!): Project!
 
     updateProject(
       id: ID!
       name: String
       description: String
       status: ProjectStatus
+     
     ): Project!
   }
 `;

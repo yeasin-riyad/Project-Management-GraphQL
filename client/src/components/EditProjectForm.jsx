@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useMutation } from "@apollo/client/react";
 import { GET_PROJECT } from "../queries/projectQueries";
 import { UPDATE_PROJECT } from "../mutations/projectMutations";
+import { useNavigate } from "react-router-dom";
 
 export default function EditProjectForm({ project }) {
   const [name, setName] = useState(project.name);
@@ -19,6 +20,7 @@ export default function EditProjectForm({ project }) {
 //         throw new Error(`Unknown status: ${project.status}`);
 //     }
 //   });
+const navigate = useNavigate();
 
   const [updateProject] = useMutation(UPDATE_PROJECT, {
     variables: { id: project.id, name, description, status },
@@ -33,6 +35,8 @@ export default function EditProjectForm({ project }) {
     }
 
     updateProject(name, description, status);
+    navigate("/");
+
   };
 
   return (
@@ -66,9 +70,9 @@ export default function EditProjectForm({ project }) {
             value={status}
             onChange={(e) => setStatus(e.target.value)}
           >
-            <option value="new">Not Started</option>
-            <option value="progress">In Progress</option>
-            <option value="completed">Completed</option>
+            <option value="NEW">NEW</option>
+            <option value="PROGRESS">PROGRESS</option>
+            <option value="COMPLETED">COMPLETED</option>
           </select>
         </div>
 

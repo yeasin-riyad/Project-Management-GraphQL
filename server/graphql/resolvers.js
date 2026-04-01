@@ -26,7 +26,7 @@ const resolvers = {
     deleteClient: async (_, { id }) => {
       await Project.deleteMany({ clientId: id }); // 🔥 better than loop
       const result = await Client.findByIdAndDelete(id);
-      return !!result; // return true/false
+      return result; 
     },
 
     // Add Project
@@ -44,7 +44,7 @@ const resolvers = {
     // Delete Project
     deleteProject: async (_, { id }) => {
       const result = await Project.findByIdAndDelete(id);
-      return !!result;
+      return result;
     },
 
     // Update Project
